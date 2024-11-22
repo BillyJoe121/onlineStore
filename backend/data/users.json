@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1732253143953,
+    "username": "Joe",
+    "email": "ud@example.com",
+    "password": "$2b$10$EUmtqZEZgPM2R/nHDmZto.2GiwUQVn03ZnjQQeE.X8QQGcPpxpTSC"
+  },
+  {
+    "id": 1732270587902,
+    "username": "Joseph Velez",
+    "email": "cliente@example.com",
+    "password": "$2b$10$8ZN2UuvJY7YdqW0kPS7Yw.dKj3oY8OAK2MyPVEub.roadvysKEhCa"
+  },
+  {
+    "id": 1732270781649,
+    "username": "Señor Administrador",
+    "email": "admin@example.com",
+    "password": "$2b$10$w1Pe8Dp1Hzol/pwxQHz2UeUcZeP/eFyWz.smiDUI97BMntN3DI3eK"
+  }
+]

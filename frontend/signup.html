@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Fondo animado con formas tipo lámpara de lava */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            background: rgb(8, 71, 58); /* Verde base */
+        }
+
+        /* Forma de blob */
+        .blob {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: black;
+            opacity: 0.6;
+            filter: blur(80px); /* Suaviza los bordes */
+            animation: blobMove 25s infinite ease-in-out;
+            border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%; /* Forma inicial */
+        }
+
+        /* Animación fluida para los blobs */
+        @keyframes blobMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%;
+            }
+            20% {
+                transform: translate(200px, -150px) scale(1.2);
+                border-radius: 60% 40% 70% 30% / 50% 70% 30% 50%;
+            }
+            40% {
+                transform: translate(-250px, 100px) scale(1);
+                border-radius: 50% 50% 40% 60% / 60% 40% 50% 50%;
+            }
+            60% {
+                transform: translate(300px, 200px) scale(0.9);
+                border-radius: 30% 70% 50% 50% / 40% 60% 70% 40%;
+            }
+            80% {
+                transform: translate(-150px, -200px) scale(1.1);
+                border-radius: 70% 30% 60% 40% / 50% 30% 50% 70%;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%;
+            }
+        }
+    </style>
+</head>
+<body class="h-screen flex items-center justify-center">
+
+    <!-- Fondo animado -->
+    <div class="animated-bg">
+        <div class="blob" style="top: 10%; left: 20%;"></div>
+        <div class="blob" style="top: 50%; left: 60%;"></div>
+        <div class="blob" style="top: 70%; left: 30%;"></div>
+        <div class="blob" style="top: 20%; left: 80%;"></div>
+    </div>
+
+    <!-- Contenedor del Sign Up -->
+    <div class="w-1/3 bg-gray shadow-xl p-10 rounded-lg flex flex-col justify-center z-10">
+        <h1 class="text-3xl font-bold text-black-800 text-center mb-6">Do you really want to be part?</h1>
+        <form id="registerForm" class="space-y-6">
+            <!-- Username Input -->
+            <div>
+                <label for="registerUsername" class="block text-sm font-medium text-black-700">Username</label>
+                <input type="text" id="registerUsername" name="username" 
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg p-3" 
+                    placeholder="JohnDoe" required>
+            </div>
+            <!-- Email Input -->
+            <div>
+                <label for="registerEmail" class="block text-sm font-medium text-black-700">Email</label>
+                <input type="email" id="registerEmail" name="email" 
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg p-3" 
+                    placeholder="you@example.com" required>
+            </div>
+            <!-- Password Input -->
+            <div>
+                <label for="registerPassword" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="registerPassword" name="password" 
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 text-lg p-3" 
+                    placeholder="••••••••" required>
+            </div>
+            <!-- Submit Button -->
+            <button type="submit" 
+                class="w-full text-gray py-3 px-4 rounded-md bg-[rgb(8,71,58)] hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all">
+                Once you are in...
+            </button>
+        </form>
+        <p class="text-sm text-gray-500 text-center mt-4">
+            Already have an account? 
+            <a href="login.html" class="text-green-500 hover:underline">Login</a>
+        </p>
+    </div>
+
+    <!-- Main JS -->
+    <script>
+        const registerForm = document.getElementById('registerForm');
+
+        registerForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const username = document.getElementById('registerUsername').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, email, password }),
+                });
+
+                const data = await response.json();
+                if (response.ok) {
+                    alert('User registered successfully! Redirecting to login...');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.message || 'Error registering user');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to register. Please try again later.');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Store</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/styles.css">
+    
+    <style>
+
+        .custom-button {
+            @apply w-full text-white py-3 px-4 rounded-md bg-[rgb(8,71,58)] hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all;
+        }
+
+        /* Integra la animación de rebote */
+        .animate-bounce {
+            animation: bounce 10s infinite;
+        }
+
+        /* Fondo animado tipo lámpara de lava */
+        .animated-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: rgb(8, 71, 58); /* Verde base */
+            overflow: hidden;
+        }
+
+        .blob {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: black;
+            opacity: 0.6;
+            filter: blur(80px);
+            animation: blobMove 20s infinite ease-in-out;
+            border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%;
+        }
+
+        @keyframes blobMove {
+            0% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%;
+            }
+            50% {
+                transform: translate(200px, -100px) scale(1.2);
+                border-radius: 50% 40% 70% 30% / 50% 70% 30% 50%;
+            }
+            100% {
+                transform: translate(0, 0) scale(1);
+                border-radius: 40% 60% 50% 50% / 30% 50% 70% 50%;
+            }
+        }
+
+        /* Contenedor de tarjetas */
+        #productList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajusta automáticamente las columnas */
+            gap: 16px; /* Espacio entre tarjetas */
+            padding: 16px;
+        }
+
+        /* Estilo de las tarjetas */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            transform: scale(1.05); /* Palpitación suave */
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        .card img {
+            width: 100%;
+            height: 150px; /* Altura fija para imágenes */
+            object-fit: cover; /* Evita la deformación */
+        }
+
+        .card h2 {
+            font-size: 1rem;
+            font-weight: bold;
+            margin: 8px;
+            color: #333;
+        }
+
+        .card p {
+            font-size: 0.875rem;
+            margin: 0 8px 8px;
+            color: #666;
+        }
+
+        /* Popup */
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            overflow: hidden;
+            z-index: 20;
+            display: none; /* Oculto por defecto */
+        }
+
+        .popup.active {
+            display: block; /* Muestra el popup */
+        }
+
+        .popup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgb(8, 71, 58);
+            color: white;
+            padding: 16px;
+        }
+
+        .popup-content {
+            padding: 16px;
+        }
+
+        .popup-content img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 16px;
+        }
+
+        .popup-close {
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .popup .buy-btn {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: rgb(34, 197, 94); /* Verde claro */
+            color: white;
+            padding: 12px;
+            margin-top: 16px;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s ease;
+        }
+
+        .popup .buy-btn:hover {
+            background-color: rgb(16, 127, 65); /* Verde más oscuro */
+        }
+
+        /* Fondo oscuro detrás del popup */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-gray-100 relative">
+
+    <!-- Fondo animado -->
+    <div class="animated-bg">
+        <div class="blob" style="top: 10%; left: 20%;"></div>
+        <div class="blob" style="top: 50%; left: 60%;"></div>
+        <div class="blob" style="top: 70%; left: 30%;"></div>
+    </div>
+
+    <!-- Navbar -->
+    <body class="bg-blue-500">
+        <nav class="relative px-4 py-4 flex justify-between items-center bg-gray shadow-md">
+            <!-- Logo con animación -->
+            <a class="text-3xl font-bold leading-none flex items-center space-x-3" href="#">
+                <svg class="h-10 w-10 animate-pulse text-black-600" alt="logo" viewBox="0 0 10240 10240">
+                    <path xmlns="http://www.w3.org/2000/svg" d="M8284 9162 c-2 -207 ..." />
+                </svg>
+                <span class="text-black-600">Some Normal Sandwiches</span>
+            </a>
+    
+            <!-- Menú de navegación -->
+            <ul class="hidden lg:flex lg:items-center lg:space-x-8">
+                <li>
+                    <a href="invoices.html" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Ver Facturas Anteriores
+                    </a>
+                </li>
+                <li>
+                    <a href="profile.html" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Ir al Perfil
+                    </a>
+                </li>
+                <li>
+                    <a href="store.html" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Volver al Inicio
+                    </a>
+                </li>
+                <li>
+                    <a href="store.html" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Ver Menu
+                    </a>
+                </li>
+            </ul>
+    
+            <!-- Botón de Logout -->
+            <button id="logoutButton" 
+                class="hidden lg:block bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition">
+                Logout
+            </button>
+    
+            <!-- Menú Hamburguesa para móviles -->
+            <div class="lg:hidden">
+                <button id="menuToggle" class="navbar-burger flex items-center text-gray-500 p-3">
+                    <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <title>Mobile menu</title>
+                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
+                    </svg>
+                </button>
+            </div>
+        </nav>
+    
+        <!-- Menú desplegable para móviles -->
+        <div id="mobileMenu" class="hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-6">
+            <a href="invoices.html" class="text-lg text-gray-500 hover:text-blue-600">Ver Facturas Anteriores</a>
+            <a href="profile.html" class="text-lg text-gray-500 hover:text-blue-600">Ir al Perfil</a>
+            <a href="store.html" class="text-lg text-gray-500 hover:text-blue-600">Volver al Inicio</a>
+            <button id="mobileLogout" 
+                class="bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition">
+                Logout
+            </button>
+        </div>
+    </body>
+    
+    <!-- Script para el Menú de Móviles -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const menuToggle = document.getElementById('menuToggle');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const mobileLogout = document.getElementById('mobileLogout');
+    
+            // Mostrar/ocultar menú móvil
+            menuToggle.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+    
+            // Evento del botón de logout (puedes conectar tu lógica aquí)
+            mobileLogout.addEventListener('click', () => {
+                localStorage.removeItem('authToken'); // Elimina el token
+                alert('Has cerrado sesión con éxito.');
+                window.location.href = 'login.html'; // Redirige al login
+            });
+        });
+    </script>
+    
+
+    <!-- Contenedor de productos -->
+    <div id="productList">
+        <!-- Los productos se generarán dinámicamente -->
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-header">
+            <h2 id="popup-title"></h2>
+            <button id="popup-close" class="popup-close">&times;</button>
+        </div>
+        <div class="popup-content">
+            <img id="popup-image" src="" alt="">
+            <p id="popup-description"></p>
+            <button class="buy-btn">Comprar</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,17 @@
+[
+  {
+    "customer": {
+      "name": "Joseph",
+      "address": "Velez",
+      "phone": "Calle 18 #135-155"
+    },
+    "product": {
+      "name": "Royal Gorila",
+      "unitPrice": 27,
+      "quantity": 2
+    },
+    "total": 54,
+    "paymentMethod": "Pago contra entrega",
+    "userEmail": "cliente@example.com"
+  }
+]
