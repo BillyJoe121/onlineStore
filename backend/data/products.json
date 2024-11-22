@@ -2,58 +2,65 @@
   {
     "id": 1,
     "name": "Royal Gorila",
-    "description": "Con un nivel medio de *** del 25% - y más del 30% dependiendo del fenotipo - esta bestia increíble hará que salgas volando...o te dejará pegado al sofá!",
+    "description": "Con un nivel medio de proteina del 25% - y más del 30% dependiendo del chef - esta bestia increíble hará que salgas volando...o te dejará pegado al sofá!",
     "price": 27,
-    "stock": 98,
+    "stock": 91,
     "imageUrl": "https://plazareal.co.cr/wp-content/uploads/2016/09/Subway-BMT-copia-1.jpg"
   },
   {
     "id": 2,
     "name": "Cookies Gelato",
-    "description": "Gracias a un equilibrio perfecto de genética índica y sativa, ofrece un subidón que sacude el cuerpo y hace que la mente entre en un estado de estimulación estática.",
+    "description": "Gracias a un equilibrio perfecto de genética dulce y salada, ofrece un subidón que sacude el cuerpo y hace que la mente entre en un estado de estimulación estática.",
     "price": 30.5,
     "stock": 100,
-    "imageUrl": "https://images.loveat.la/media/6675/images/plates/227466"
+    "imageUrl": "https://i.pinimg.com/enabled_lo_mid/474x/1b/56/14/1b56143e0072f627d7a091375c331134.jpg"
   },
   {
     "id": 3,
     "name": "OG Kush",
-    "description": "Las semillas OG Kush no necesitan presentación. Este híbrido premiado es muy popular desde hace décadas, con sus fuertes efectos físicos y mentales, sus cosechas abundantes, y sus deliciosos aromas a cítricos, fruta y pino.",
+    "description": "La receta OG Kush no necesitan presentación. Este híbrido premiado es muy popular desde hace décadas, con sus fuertes efectos físicos y mentales, sus cosechas abundantes en calorias, y sus deliciosos aromas a cítricos, fruta y pino.",
     "price": 21.5,
-    "stock": 100,
-    "imageUrl": "https://via.placeholder.com/300x200"
+    "stock": 95,
+    "imageUrl": "https://i.pinimg.com/enabled_lo_mid/736x/f0/75/4e/f0754e8a0c0c504208f56b83acb9d260.jpg"
   },
   {
     "id": 4,
     "name": "Pink Mist",
-    "description": "¿Buscas genética clásica con un toque moderno? La Pink Mist es la última creación del equipo de cría profesional de Royal Queen Seeds. Estas semillas feminizadas descienden de una variedad local tailandesa única y una Haze muy especial, y se convierten en dominancia sativa repletas de *** y complejos aromas terrosos de frutos del bosque.",
+    "description": "¿Buscas genética clásica con un toque moderno? La Pink Mist es la última creación del equipo de cocina profesional. Esta receta desciende de una variedad local tailandesa única y una Haze muy especial, y se convierten en dominancia salada repletas de proteina y complejos aromas terrosos de frutos del bosque.",
     "price": 21.5,
     "stock": 100,
-    "imageUrl": "https://via.placeholder.com/300x200"
+    "imageUrl": "https://i.pinimg.com/736x/ca/d4/fc/cad4fc884f68c417fb3f7aac3bb73398.jpg"
   },
   {
     "id": 5,
     "name": "Alien OG",
-    "description": "Prepárate para explorar nuevas galaxias con la Alien OG, la última creación de nuestro equipo de cría profesional. La Alien OG es originaria de EE.UU. y una de las grandes favoritas en los dispensarios de estados legales como California, Alaska o Nevada.",
+    "description": "Prepárate para explorar nuevas galaxias con la Alien OG, la última creación de nuestro equipo de cocina profesional. La Alien OG es originaria de EE.UU. y una de las grandes favoritas en los dispensarios de estados legales como California, Alaska o Nevada.",
     "price": 27,
     "stock": 100,
-    "imageUrl": "https://via.placeholder.com/300x200"
+    "imageUrl": "https://i.pinimg.com/736x/ce/0a/90/ce0a9051d7d3f9513eb53746a65f7448.jpg"
   },
   {
     "id": 6,
     "name": "AMG - Amnesia Mac Ganja",
-    "description": "Entra a velocidades supersónicas en el cosmos con esta codiciada diosa de dominancia sativa: la variedad AMG. Apreciada por sus increíbles niveles de *** y un ciego cerebral que libera tu mente de las cadenas de la realidad.",
+    "description": "Entra a velocidades supersónicas en el cosmos con esta codiciada diosa de dominancia salada: la variedad AMG. Apreciada por sus increíbles niveles de proteina y un ciego cerebral que libera tu mente de las cadenas de la realidad.",
     "price": 30.5,
-    "stock": 100,
-    "imageUrl": "https://via.placeholder.com/300x200"
+    "stock": 97,
+    "imageUrl": "https://i.pinimg.com/736x/42/07/b0/4207b01834696e412d2fe09d7aedd10e.jpg"
   },
   {
     "id": 7,
     "name": "Shining Silver Haze",
-    "description": "Las semillas de la Shining Silver Haze combinan las mejores características de la genética Haze clásica en una floración rápida y muy productiva. Cargada con un 21% de *** y montones de terpenos, es una variedad premiada.",
+    "description": "Las semillas (de ajonjolí) de la Shining Silver Haze combinan las mejores características de la genética Haze clásica rápida y muy productiva. Cargada con un 21% de proteina y montones de terpenos, es una variedad premiada.",
     "price": 23,
     "stock": 100,
-    "imageUrl": "https://via.placeholder.com/300x200"
+    "imageUrl": "https://i.pinimg.com/736x/e7/2b/29/e72b2956d39c8f10b34cad422bd5fd47.jpg"
+  },
+  {
+    "name": "Cartera",
+    "description": "aaa",
+    "price": 111,
+    "stock": 2,
+    "imageUrl": "asdasdasdsa",
+    "id": 1732317481637
   }
-
 ]

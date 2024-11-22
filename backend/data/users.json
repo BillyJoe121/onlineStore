@@ -16,5 +16,11 @@
     "username": "Señor Administrador",
     "email": "admin@example.com",
     "password": "$2b$10$w1Pe8Dp1Hzol/pwxQHz2UeUcZeP/eFyWz.smiDUI97BMntN3DI3eK"
+  },
+  {
+    "id": 1732317518304,
+    "username": "Usuario",
+    "email": "usuario@example.com",
+    "password": "$2b$10$8rOyAb2c5PvqWGDtJZU/m.mSMP6XWgxrY5UejQhGiUaEwyMDZtaua"
   }
 ]

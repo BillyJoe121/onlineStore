@@ -96,7 +96,7 @@
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col items-center py-6">
     <header class="w-full bg-white shadow-md p-4">
-        <h1 class="text-2xl font-bold text-center">Checkout</h1>
+        <h1 class="text-2xl font-bold text-center">Carrito</h1>
     </header>
 
     <div class="flex flex-col lg:flex-row justify-between w-full max-w-7xl mt-6 px-4">
@@ -118,11 +118,9 @@
                     <label for="phone" class="block text-sm font-medium text-gray-700">Teléfono *</label>
                     <input type="text" id="phone" name="phone" class="custom-input" placeholder="Número de teléfono" required>
                 </div>
-
-                <div>
-                    <label for="quantity" class="block text-sm font-medium text-gray-700">Cantidad *</label>
-                    <input type="number" id="quantity" name="quantity" class="custom-input" placeholder="Selecciona la cantidad" min="1" value="1" required>
-                </div>
+                <p class="text-sm text-gray-600 mt-2">
+                    Nuestro único método de pago es en efectivo y contraentrega. Por favor, confirma la compra solo si estás seguro.
+                </p>
             </form>
         </div>
 
@@ -132,7 +130,6 @@
             <div id="orderSummary" class="space-y-4">
                 <p><strong>Producto:</strong> <span id="productName">-</span></p>
                 <p><strong>Precio Unitario:</strong> $<span id="unitPrice">0.00</span></p>
-                <p><strong>Cantidad:</strong> <span id="summaryQuantity">1</span></p>
                 <p><strong>Total:</strong> $<span id="totalPrice">0.00</span></p>
             </div>
             <button id="confirmOrder" class="custom-btn btn-green w-full mt-4">
@@ -149,11 +146,12 @@
     <div id="popup" class="popup">
         <h2 class="text-xl font-bold mb-4">Factura</h2>
         <div id="invoiceDetails"></div>
-        <button id="closePopup" class="custom-btn btn-red w-full mt-4">
+        <button id="closePopup" onclick="window.location.href='store.html'" class="custom-btn btn-red w-full mt-4">
             Cerrar
         </button>
     </div>
     <div id="overlay" class="overlay"></div>
+    
 
     <script src="assets/js/kart.js"></script>
 </body>

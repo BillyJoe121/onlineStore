@@ -8,6 +8,8 @@ const authRoutes = require('./routes/authRoutes');
 const productRoutes = require('./routes/productRoutes');
 const invoiceRoutes = require('./routes/invoiceRoutes'); // Agregamos las rutas de facturas
 const adminRoutes = require('./routes/adminRoutes'); // Ruta del archivo creado
+const cartRoutes = require('./routes/cartRoutes'); // Importar las rutas del carrito
+
 
 
 const app = express();
@@ -21,6 +23,7 @@ app.use('/api/auth', authRoutes);         // Rutas de autenticación
 app.use('/api/products', productRoutes); // Rutas de productos
 app.use('/api/invoices', invoiceRoutes); // Aquí va la ruta de facturas
 app.use('/api/admin', adminRoutes);
+app.use('/api/cart', cartRoutes); // Integrar las rutas del carrito
 
 
 // Servir archivos estáticos del frontend

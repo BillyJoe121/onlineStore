@@ -199,19 +199,53 @@ function setupStorePage() {
         overlay.classList.add('active');
     }
 
-    // Redirigir a kart.html con los datos del producto
-    if (buyButton) {
-        buyButton.addEventListener('click', () => {
-            if (!selectedProduct) return;
-
-            // Construir la URL con los datos del producto
-            const queryParams = new URLSearchParams({
-                name: selectedProduct.name,
-                price: selectedProduct.price,
-                imageUrl: selectedProduct.imageUrl,
-            }).toString();
-
-            window.location.href = `kart.html?${queryParams}`;
-        });
-    }
+    buyButton.addEventListener('click', async () => {
+        if (!selectedProduct) return;
+    
+        try {
+            const quantityInput = document.getElementById('popup-quantity');
+            const quantity = parseInt(quantityInput.value, 10);
+    
+            // Validación en el cliente: Cantidad válida y no mayor al stock
+            if (isNaN(quantity) || quantity <= 0) {
+                alert('Por favor, selecciona una cantidad válida.');
+                return;
+            }
+    
+            if (quantity > selectedProduct.stock) {
+                alert(`Solo hay ${selectedProduct.stock} unidades disponibles.`);
+                return;
+            }
+    
+            // Enviar datos al backend
+            const response = await fetch(`${API_URL}/cart`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+                },
+                body: JSON.stringify({
+                    productId: selectedProduct.id,
+                    productName: selectedProduct.name,
+                    quantity,
+                    price: selectedProduct.price,
+                    stock: selectedProduct.stock, // Se envía el stock al backend para validación
+                }),
+            });
+    
+            const data = await response.json();
+    
+            if (response.ok) {
+                alert('Producto añadido al carrito con éxito.');
+                closePopup(); // Cerrar el popup
+            } else {
+                alert(data.message || 'Error al añadir al carrito.');
+            }
+        } catch (error) {
+            console.error('Error al añadir al carrito:', error);
+            alert('Hubo un problema al intentar añadir el producto al carrito.');
+        }
+    });
+    
+    
 }

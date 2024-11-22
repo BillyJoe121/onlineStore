@@ -1,16 +1,85 @@
 [
   {
     "customer": {
+      "name": "Carlos Andres",
+      "address": "Carrera 6A",
+      "phone": "3157589845"
+    },
+    "products": [
+      {
+        "name": "OG Kush",
+        "unitPrice": 21.5,
+        "quantity": 1,
+        "subtotal": 21.5
+      }
+    ],
+    "total": 21.5,
+    "paymentMethod": "Pago contra entrega",
+    "userEmail": "cliente@example.com"
+  },
+  {
+    "customer": {
+      "name": "Miguel Alfonso",
+      "address": "Carrea 9",
+      "phone": "3157589845"
+    },
+    "products": [
+      {
+        "name": "Cookies Gelato",
+        "unitPrice": 30.5,
+        "quantity": 1,
+        "subtotal": 30.5
+      },
+      {
+        "name": "OG Kush",
+        "unitPrice": 21.5,
+        "quantity": 1,
+        "subtotal": 21.5
+      }
+    ],
+    "total": 52,
+    "paymentMethod": "Pago contra entrega",
+    "userEmail": "cliente@example.com"
+  },
+  {
+    "customer": {
       "name": "Joseph",
       "address": "Velez",
-      "phone": "Calle 18 #135-155"
+      "phone": "4135555555"
     },
-    "product": {
-      "name": "Royal Gorila",
-      "unitPrice": 27,
-      "quantity": 2
+    "products": [
+      {
+        "name": "Royal Gorila",
+        "unitPrice": 27,
+        "quantity": 9,
+        "subtotal": 243
+      },
+      {
+        "name": "OG Kush",
+        "unitPrice": 21.5,
+        "quantity": 5,
+        "subtotal": 107.5
+      }
+    ],
+    "total": 350.5,
+    "paymentMethod": "Pago contra entrega",
+    "userEmail": "cliente@example.com"
+  },
+  {
+    "customer": {
+      "name": "a",
+      "address": "a",
+      "phone": "1"
     },
-    "total": 54,
+    "products": [
+      {
+        "name": "AMG - Amnesia Mac Ganja",
+        "unitPrice": 30.5,
+        "quantity": 3,
+        "subtotal": 91.5
+      }
+    ],
+    "total": 91.5,
     "paymentMethod": "Pago contra entrega",
     "userEmail": "cliente@example.com"
   }

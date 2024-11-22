@@ -208,50 +208,48 @@
                     </a>
                 </li>
                 <li>
-                    <a href="profile.html" class="text-sm text-gray-500 hover:text-green-600 transition">
-                        Ir al Perfil
+                    <a href="https://www.youtube.com/watch?v=ZeYgIwBRvGQ" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Como comerlos?
                     </a>
                 </li>
                 <li>
-                    <a href="store.html" class="text-sm text-gray-500 hover:text-green-600 transition">
-                        Volver al Inicio
-                    </a>
-                </li>
-                <li>
-                    <a href="store.html" class="text-sm text-gray-500 hover:text-green-600 transition">
-                        Ver Menu
+                    <a href="kart.html" class="text-sm text-gray-500 hover:text-green-600 transition">
+                        Ir al Carrito
                     </a>
                 </li>
             </ul>
     
             <!-- Botón de Logout -->
             <button id="logoutButton" 
-                class="hidden lg:block bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition">
-                Logout
+                class="hidden lg:block bg-#006400-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition">
+                Salir
             </button>
     
-            <!-- Menú Hamburguesa para móviles -->
-            <div class="lg:hidden">
-                <button id="menuToggle" class="navbar-burger flex items-center text-gray-500 p-3">
-                    <svg class="h-6 w-6 fill-current" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                        <title>Mobile menu</title>
-                        <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
-                    </svg>
-                </button>
-            </div>
+
         </nav>
-    
-        <!-- Menú desplegable para móviles -->
-        <div id="mobileMenu" class="hidden fixed inset-0 bg-white z-50 flex flex-col items-center justify-center space-y-6">
-            <a href="invoices.html" class="text-lg text-gray-500 hover:text-blue-600">Ver Facturas Anteriores</a>
-            <a href="profile.html" class="text-lg text-gray-500 hover:text-blue-600">Ir al Perfil</a>
-            <a href="store.html" class="text-lg text-gray-500 hover:text-blue-600">Volver al Inicio</a>
-            <button id="mobileLogout" 
-                class="bg-red-500 text-white py-2 px-4 rounded-xl hover:bg-red-600 transition">
-                Logout
-            </button>
-        </div>
     </body>
+    <!-- Contenedor de productos -->
+    <div id="productList">
+        <!-- Los productos se generarán dinámicamente -->
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <div class="popup-header">
+            <h2 id="popup-title"></h2>
+            <button id="popup-close" class="popup-close">&times;</button>
+        </div>
+        <div class="popup-content">
+            <img id="popup-image" src="" alt="">
+            <p id="popup-description"></p>
+            <input id="popup-quantity" type="number" min="1" value="1" class="border rounded-md w-full mb-2 px-2 py-1">
+            <button id="popup-add-to-cart" class="buy-btn">Añadir al carrito</button>
+        </div>
+    </div>
+
+    <!-- Overlay -->
+    <div id="overlay" class="overlay"></div>
+
     
     <!-- Script para el Menú de Móviles -->
     <script>
@@ -271,30 +269,32 @@
                 alert('Has cerrado sesión con éxito.');
                 window.location.href = 'login.html'; // Redirige al login
             });
-        });
+            const addToCart = async (id, name, quantity, price, stock) => {
+                try {
+                    const response = await fetch('/api/cart', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ productId: id, productName: name, quantity, price, stock })
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        alert('Producto añadido al carrito');
+                    } else {
+                        alert(data.message || 'Error al añadir al carrito');
+                    }
+                } catch (error) {
+                    console.error('Error al añadir al carrito:', error);
+                }
+            };
+
+            // Cerrar popup
+            popupClose.addEventListener('click', () => {
+                popup.classList.remove('active');
+                overlay.classList.remove('active');
+            });
+        });  
     </script>
     
-
-    <!-- Contenedor de productos -->
-    <div id="productList">
-        <!-- Los productos se generarán dinámicamente -->
-    </div>
-
-    <!-- Popup -->
-    <div id="popup" class="popup">
-        <div class="popup-header">
-            <h2 id="popup-title"></h2>
-            <button id="popup-close" class="popup-close">&times;</button>
-        </div>
-        <div class="popup-content">
-            <img id="popup-image" src="" alt="">
-            <p id="popup-description"></p>
-            <button class="buy-btn">Comprar</button>
-        </div>
-    </div>
-
-    <!-- Overlay -->
-    <div id="overlay" class="overlay"></div>
 
     <script src="assets/js/main.js"></script>
 </body>
